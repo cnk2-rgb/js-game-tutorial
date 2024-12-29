@@ -25,21 +25,32 @@ const hero = new Sprite({
     frameSize: new Vector2(32, 32),
     hFrames: 3, 
     vFrames: 8,
-    frames: 1, // 0 indexing, second element of first row
+    frame: 1, // 0 indexing, second element of first row
+})
+const shadow = new Sprite({
+    resource: resources.images.shadow,
+    frameSize: new Vector2(32, 32),
 })
 
-const heroPos = new Vector2(16 * 5, 16 * 5);
+const heroPos = new Vector2(16 * 6, 16 * 5); //inital pos for hero
 
 const draw = () => {
     skySprite.drawImage(ctx, 0, 0);
     groundSprite.drawImage(ctx, 0, 0);
     
-    hero.drawImage(ctx, heroPos.x, heroPos.y);
+    //center hero in cell (state is still hero pos)
+    const heroOffset = new Vector2(-8, -21);
+    const heroPosX = heroPos.x+heroOffset.x;
+    const heroPosY = heroPos.y+1+heroOffset.y;
+
+    shadow.drawImage(ctx, heroPosX, heroPosY);
+    hero.drawImage(ctx, heroPosX, heroPosY);
 }
 
 
 // try to redraw every 300 ms; will get replaced w game loop
 setInterval(() => {
+    hero.frame += 1;
     console.log("draw")
     draw()
 }, 300)

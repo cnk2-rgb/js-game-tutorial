@@ -26,18 +26,15 @@ export class Sprite {
     //iterate thru spreadsheet as a grid
     buildFrameMap() {
         let frameCount = 0;
-        for (let v=0; v<this.vFrames;v++) {
-            for (let h=0; h<this.hFrames;h++) {
-                this.frameMap.set(
-                    frameCount, 
-                    //store top left corner of frame w new vec obj
-                    new Vector2(this.frameSize.x * h, this.frameSize.y * v)
-                )
-                frameCount++;
-
-            }
+        for (let v=0; v<this.vFrames; v++) {
+          for (let h=0; h<this.hFrames; h++) {
+            this.frameMap.set(
+                frameCount,
+                new Vector2(this.frameSize.x * h, this.frameSize.y * v)
+            )
+            frameCount++;
+          }
         }
-
     }
 
     //new method
