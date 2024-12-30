@@ -5,6 +5,7 @@
 import { resources } from "./src/Resource.js";
 import { Sprite } from "./src/Sprite.js";
 import { Vector2 } from "./src/Vector2.js";
+import { GameLoop } from "./src/GameLoop.js";
 
 const canvas = document.querySelector("#game-canvas");
 const ctx = canvas.getContext("2d") //getting context for canvas
@@ -34,6 +35,12 @@ const shadow = new Sprite({
 
 const heroPos = new Vector2(16 * 6, 16 * 5); //inital pos for hero
 
+const update = () => {
+    // Updating entities in the game
+    hero.frame = (hero.frame + 1) % 24;
+    console.log(hero.frame);
+};
+
 const draw = () => {
     skySprite.drawImage(ctx, 0, 0);
     groundSprite.drawImage(ctx, 0, 0);
@@ -48,10 +55,6 @@ const draw = () => {
 }
 
 
-// try to redraw every 300 ms; will get replaced w game loop
-setInterval(() => {
-    hero.frame += 1;
-    console.log("draw")
-    draw()
-}, 300)
-
+//game loop
+const gameLoop = new GameLoop(update, draw);
+gameLoop.start();

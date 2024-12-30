@@ -45,7 +45,7 @@ export class Sprite {
         //find correct sprite sheet frame to use from frame map
         let frameCoordX = 0;
         let frameCoordY = 0;
-        const frame = this.frameMap.get(this.frame);
+        const frame = this.frameMap.get(this.frame); //index into frame map
         if (frame) {
             frameCoordX = frame.x;
             frameCoordY = frame.y;  
